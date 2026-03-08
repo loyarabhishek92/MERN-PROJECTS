@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 
 import { useDispatch } from "react-redux";
 import { removeUser } from "@/pages/forms/userSlice";
+import { toast } from "sonner";
 
 export default function RemoveUser({id}) {
   const dispatch = useDispatch();
@@ -19,18 +20,19 @@ export default function RemoveUser({id}) {
                  
        
       </AlertDialogTrigger>
-      <AlertDialogContent>
+      <AlertDialogContent className="bg-blue-50">
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
             This action cannot be undone. This will permanently delete your
-            account from our servers.
+            data from our servers.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction
-          onClick = {() => dispatch(removeUser(id))}
+          className="bg-red-900"
+          onClick = {() => dispatch(removeUser(id), toast.success('Data Deleted!'))}
           >Continue</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
